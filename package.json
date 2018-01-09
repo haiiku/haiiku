@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/VEBERArnaud/lambda-comments/issues"
   },
-  "homepage": "https://github.com/VEBERArnaud/lambda-comments#readme"
+  "homepage": "https://github.com/VEBERArnaud/lambda-comments#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.1.0"
+  }
 }
