@@ -1,6 +1,9 @@
 # env var
 .env
 
+# coverage directory
+coverage
+
 # package directories
 node_modules
 jspm_packages
