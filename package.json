@@ -4,7 +4,7 @@
   "description": "lambda comments",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "istanbul cover ./node_modules/.bin/_mocha tests --report clover"
   },
   "repository": {
     "type": "git",
