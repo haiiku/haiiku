@@ -1,2 +1,6 @@
 checks:
     javascript: true
+
+filter:
+    excluded_paths:
+        - "tests/"
