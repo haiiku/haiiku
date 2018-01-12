@@ -29,3 +29,11 @@ functions:
           path: twitter/authorize
           method: post
           cors: true
+
+  twitter_user:
+    handler: src/oauth/twitter.userData
+    events:
+      - http:
+          path: twitter/user
+          method: post
+          cors: true
