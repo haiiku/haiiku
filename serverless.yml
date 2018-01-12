@@ -13,3 +13,7 @@ functions:
     handler: src/oauth/twitter.requestToken
     events:
       - http: GET twitter/authenticate
+  twitter_authorize:
+    handler: src/oauth/twitter.authToken
+    events:
+      - http: GET twitter/authorize
