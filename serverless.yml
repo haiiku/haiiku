@@ -17,3 +17,7 @@ functions:
     handler: src/oauth/twitter.authToken
     events:
       - http: GET twitter/authorize
+  twitter_user:
+    handler: src/oauth/twitter.userData
+    events:
+      - http: GET twitter/user
