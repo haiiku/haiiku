@@ -13,3 +13,11 @@ provider:
 functions:
   hello:
     handler: src/handler.hello
+
+  twitter_authenticate:
+    handler: src/oauth/twitter.requestToken
+    events:
+      - http:
+          path: twitter/authenticate
+          method: get
+          cors: true
