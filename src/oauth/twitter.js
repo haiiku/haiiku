@@ -38,3 +38,35 @@ module.exports.requestToken = (event, context, callback) => {
     });
   });
 };
+
+module.exports.authToken = (event, context, callback) => {
+  const body = JSON.parse(event.body);
+
+  const token = body.token;
+  const token_secret = body.token_secret;
+  const verifier = body.verifier;
+
+  // get auth token
+  oauth.getOAuthAccessToken(token, token_secret, verifier, (error, access_token, access_token_secret) => {
+    // fail
+    if (error) {
+      console.error(error);
+      return callback(new Error('[500] Internal Server Error'));
+    }
+
+    // prepare payload
+    var payload = {
+      access_token: access_token,
+      access_token_secret: access_token_secret
+    };
+
+    // send response
+    return callback(null, {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify(payload)
+    });
+  });
+};

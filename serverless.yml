@@ -21,3 +21,11 @@ functions:
           path: twitter/authenticate
           method: get
           cors: true
+
+  twitter_authorize:
+    handler: src/oauth/twitter.authToken
+    events:
+      - http:
+          path: twitter/authorize
+          method: post
+          cors: true
