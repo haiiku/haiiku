@@ -5,6 +5,10 @@ provider:
   runtime: nodejs6.10
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, env:AWS_DEFAULT_REGION, 'us-east-1'}
+  environment:
+    TWITTER_CONSUMER_KEY: ${env:TWITTER_CONSUMER_KEY}
+    TWITTER_CONSUMER_SECRET: ${env:TWITTER_CONSUMER_SECRET}
+    TWITTER_CALLBACK_URI: ${env:TWITTER_CALLBACK_URI}
 
 functions:
   hello:
