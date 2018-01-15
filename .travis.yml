@@ -13,13 +13,13 @@ install:
     - npm install
 
 before_script:
-    - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then serverless deploy -v --stage "travis-${TRAVIS_BUILD_ID}-${TRAVIS_BUILD_NUMBER}"; fi
+    - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then serverless deploy -v --stage "${TRAVIS_BUILD_NUMBER}travis${TRAVIS_BUILD_ID}"; fi
 
 script:
     - npm test
 
 after_script:
-    - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then serverless remove -v --stage "travis-${TRAVIS_BUILD_ID}-${TRAVIS_BUILD_NUMBER}"; fi
+    - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then serverless remove -v --stage "${TRAVIS_BUILD_NUMBER}travis${TRAVIS_BUILD_ID}"; fi
 
     - npm install ocular.js
     - $(npm bin)/ocular coverage/clover.xml
