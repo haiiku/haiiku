@@ -1,0 +1,7 @@
+{
+  "exclude": ["tests/"],
+  "include": ["src/"],
+  "reporter": ["clover"],
+  "report-dir": "build",
+  "temp-directory": "build"
+}
