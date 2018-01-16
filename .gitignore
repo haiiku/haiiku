@@ -1,8 +1,8 @@
 # env var
 .env
 
-# coverage directory
-coverage
+# build artifacts directory
+build
 
 # package directories
 node_modules
