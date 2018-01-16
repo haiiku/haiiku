@@ -22,4 +22,4 @@ after_script:
     - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then serverless remove -v --stage "${TRAVIS_BUILD_NUMBER}travis${TRAVIS_BUILD_ID}"; fi
 
     - npm install ocular.js
-    - $(npm bin)/ocular coverage/clover.xml
+    - $(npm bin)/ocular build/clover.xml
