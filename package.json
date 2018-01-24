@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/VEBERArnaud/lambda-comments#readme",
   "devDependencies": {
+    "aws-sdk": "^2.182.0",
     "chai": "^4.1.2",
     "mocha": "^4.1.0",
     "nyc": "^11.4.1"
-  }
+  },
+  "dependencies": {}
 }
