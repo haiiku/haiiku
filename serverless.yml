@@ -12,10 +12,22 @@ provider:
   environment:
     TABLE_NAME: ${self:custom.table_name}
     POST_INDEX_NAME: ${self:custom.post_index_name}
+    SITE_ID: ${env:SITE_ID}
 
 functions:
   hello:
     handler: src/handler.hello
+  put_comment:
+    handler: src/comments.put
+    events:
+      - http:
+          path: comment/{post_id}
+          method: post
+          cors: true
+          request:
+            parameters:
+              paths:
+                post_id: true
 
 resources:
   Resources:
