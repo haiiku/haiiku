@@ -13,10 +13,22 @@ provider:
     TABLE_NAME: ${self:custom.table_name}
     POST_INDEX_NAME: ${self:custom.post_index_name}
     SITE_ID: ${env:SITE_ID}
+    QUERY_LIMIT: ${env:QUERY_LIMIT}
 
 functions:
   hello:
     handler: src/handler.hello
+  get_comments:
+    handler: src/comments.get
+    events:
+      - http:
+          path: comments/{post_id}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                post_id: true
   put_comment:
     handler: src/comments.put
     events:
@@ -59,7 +71,6 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-
     DynamoDBIamPolicy:
       Type: AWS::IAM::Policy
       DependsOn: DynamoDbTable
@@ -72,5 +83,9 @@ resources:
               Action:
                 - dynamodb:PutItem
               Resource: arn:aws:dynamodb:*:*:table/${self:custom.table_name}
+            - Effect: Allow
+              Action:
+                - dynamodb:Query
+              Resource: arn:aws:dynamodb:*:*:table/${self:custom.table_name}/index/${self:custom.post_index_name}
         Roles:
           - Ref: IamRoleLambdaExecution
