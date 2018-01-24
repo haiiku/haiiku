@@ -1,11 +1,64 @@
 service: lambda-comments
 
+custom:
+  table_name: lambda-comments-${self:provider.stage}
+  post_index_name: post-id-index-${self:provider.stage}
+
 provider:
   name: aws
   runtime: nodejs6.10
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, env:AWS_DEFAULT_REGION, 'us-east-1'}
+  environment:
+    TABLE_NAME: ${self:custom.table_name}
+    POST_INDEX_NAME: ${self:custom.post_index_name}
 
 functions:
   hello:
     handler: src/handler.hello
+
+resources:
+  Resources:
+    DynamoDbTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.table_name}
+        AttributeDefinitions:
+          - AttributeName: site_id
+            AttributeType: S
+          - AttributeName: post_id
+            AttributeType: S
+          - AttributeName: created_at
+            AttributeType: N
+        KeySchema:
+          - AttributeName: site_id
+            KeyType: HASH
+          - AttributeName: created_at
+            KeyType: RANGE
+        LocalSecondaryIndexes:
+          - IndexName: ${self:custom.post_index_name}
+            KeySchema:
+              - AttributeName: site_id
+                KeyType: HASH
+              - AttributeName: post_id
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+    DynamoDBIamPolicy:
+      Type: AWS::IAM::Policy
+      DependsOn: DynamoDbTable
+      Properties:
+        PolicyName: ${self:custom.table_name}
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:PutItem
+              Resource: arn:aws:dynamodb:*:*:table/${self:custom.table_name}
+        Roles:
+          - Ref: IamRoleLambdaExecution
