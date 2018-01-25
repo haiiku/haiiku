@@ -3,6 +3,7 @@
 const AWS = require('aws-sdk');
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
+const response = require('../response');
 
 module.exports.dynamo = dynamo;
 
@@ -26,19 +27,9 @@ module.exports.get = (event, context, callback) => {
 
   // dynamo db query
   dynamo.query(params, (error, data) => {
-    if (error) {
-      return callback(new Error('[500] Internal Server Error'));
-    }
-
-    return callback(null, {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify({
-        data: data.Items,
-      }),
-    });
+    return error
+      ? response.fail(callback, 500)
+      : response.success(callback, 200, JSON.stringify({data: data.Items}));
   });
 };
 
@@ -67,15 +58,8 @@ module.exports.put = (event, context, callback) => {
 
   // dynamo db put
   dynamo.put(params, (error) => {
-    if (error) {
-      return callback(new Error('[500] Internal Server Error'));
-    }
-
-    return callback(null, {
-      statusCode: 201,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-    });
+    return error
+      ? response.fail(callback, 500)
+      : response.success(callback, 201);
   });
 };
