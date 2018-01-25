@@ -4,6 +4,7 @@ const AWS = require('aws-sdk');
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
 const response = require('../response');
+const comment = require('../model/comment');
 
 module.exports.dynamo = dynamo;
 
@@ -34,26 +35,13 @@ module.exports.get = (event, context, callback) => {
 };
 
 module.exports.put = (event, context, callback) => {
-  // get timestamp
-  const timestamp = new Date().getTime();
-
   // document
   const body = JSON.parse(event.body);
-  const item = {
-    site_id: process.env.SITE_ID,
-    post_id: event.pathParameters.post_id,
-    comment: {
-      author: body.author,
-      text: body.text,
-    },
-    created_at: timestamp,
-    updated_at: timestamp,
-  };
 
   // dynamo db put params
   const params = {
     TableName: process.env.TABLE_NAME,
-    Item: item,
+    Item: comment.new(process.env.SITE_ID, event.pathParameters.post_id, body.author, body.text),
   };
 
   // dynamo db put
