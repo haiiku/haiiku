@@ -3,6 +3,8 @@
 const AWS = require('aws-sdk');
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
+module.exports.dynamo = dynamo;
+
 module.exports.get = (event, context, callback) => {
   // dynamo db query params
   const params = {
@@ -24,7 +26,6 @@ module.exports.get = (event, context, callback) => {
   // dynamo db query
   dynamo.query(params, (error, data) => {
     if (error) {
-      console.error(error);
       return callback(new Error('[500] Internal Server Error'));
     }
 
@@ -66,7 +67,6 @@ module.exports.put = (event, context, callback) => {
   // dynamo db put
   dynamo.put(params, (error) => {
     if (error) {
-      console.error(error);
       return callback(new Error('[500] Internal Server Error'));
     }
 
