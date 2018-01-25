@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const sinon = require('sinon');
-const api = require('./../src/comments');
+const api = require('./../../src/api/comments');
 
 describe('get_comments', () => {
   const event = JSON.parse(fs.readFileSync('events/http-comments-get.json', 'utf8'));

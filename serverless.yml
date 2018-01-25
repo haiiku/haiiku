@@ -17,7 +17,7 @@ provider:
 
 functions:
   get_comments:
-    handler: src/comments.get
+    handler: src/api/comments.get
     events:
       - http:
           path: comments/{post_id}
@@ -28,7 +28,7 @@ functions:
               paths:
                 post_id: true
   put_comment:
-    handler: src/comments.put
+    handler: src/api/comments.put
     events:
       - http:
           path: comment/{post_id}
