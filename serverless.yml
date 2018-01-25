@@ -16,8 +16,6 @@ provider:
     QUERY_LIMIT: ${env:QUERY_LIMIT}
 
 functions:
-  hello:
-    handler: src/handler.hello
   get_comments:
     handler: src/comments.get
     events:
