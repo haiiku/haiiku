@@ -5,7 +5,7 @@
   "main": "handler.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "nyc mocha tests/*"
+    "test": "nyc mocha --recursive tests"
   },
   "repository": {
     "type": "git",

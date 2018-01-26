@@ -16,8 +16,8 @@ provider:
     QUERY_LIMIT: ${env:QUERY_LIMIT}
 
 functions:
-  get_comments:
-    handler: src/api/comments.get
+  comment_list:
+    handler: src/api/comment/list.handle
     events:
       - http:
           path: comments/{post_id}
@@ -27,8 +27,8 @@ functions:
             parameters:
               paths:
                 post_id: true
-  put_comment:
-    handler: src/api/comments.put
+  comment_add:
+    handler: src/api/comment/add.handle
     events:
       - http:
           path: comment/{post_id}
