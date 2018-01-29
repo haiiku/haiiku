@@ -19,6 +19,9 @@
   "devDependencies": {
     "aws-sdk": "^2.182.0",
     "chai": "^4.1.2",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "mocha": "^4.1.0",
     "nyc": "^11.4.1",
     "sinon": "^4.2.1"
