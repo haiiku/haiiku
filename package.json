@@ -4,6 +4,7 @@
   "description": "lambda comments",
   "main": "handler.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "nyc mocha tests"
   },
   "repository": {
