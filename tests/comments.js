@@ -1,10 +1,7 @@
 'use strict';
 
-const chai = require('chai');
-const expect = chai.expect;
 const fs = require('fs');
 const sinon = require('sinon');
-
 const api = require('./../src/comments');
 
 describe('get_comments', () => {
@@ -13,7 +10,9 @@ describe('get_comments', () => {
 
   it('should call query on dynamo', () => {
     const queryStub = sinon.stub(api.dynamo, 'query');
-    queryStub.yields(null, {Items: []});
+    queryStub.yields(null, {
+      Items: [],
+    });
 
     api.get(event, context, () => {
       sinon.assert.calledOnce(queryStub);
@@ -29,7 +28,9 @@ describe('put_comment', () => {
 
   it('should call put on dynamo', () => {
     const putStub = sinon.stub(api.dynamo, 'put');
-    putStub.yields(null, {Items: []});
+    putStub.yields(null, {
+      Items: [],
+    });
 
     api.put(event, context, () => {
       sinon.assert.calledOnce(putStub);

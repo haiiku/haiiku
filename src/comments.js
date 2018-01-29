@@ -1,6 +1,7 @@
 'use strict';
 
 const AWS = require('aws-sdk');
+
 const dynamo = new AWS.DynamoDB.DocumentClient();
 
 module.exports.dynamo = dynamo;
@@ -46,7 +47,7 @@ module.exports.put = (event, context, callback) => {
   const timestamp = new Date().getTime();
 
   // document
-  const body = JSON.parse(event.body)
+  const body = JSON.parse(event.body);
   const item = {
     site_id: process.env.SITE_ID,
     post_id: event.pathParameters.post_id,
