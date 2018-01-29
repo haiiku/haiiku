@@ -16,6 +16,7 @@ before_script:
     - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then serverless deploy -v --stage "${TRAVIS_BUILD_NUMBER}travis${TRAVIS_BUILD_ID}"; fi
 
 script:
+    - npm run lint
     - npm test
 
 after_script:
