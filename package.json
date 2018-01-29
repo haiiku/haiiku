@@ -1,7 +1,7 @@
 {
-  "name": "lambda-comments",
+  "name": "haiiku",
   "version": "0.0.1-alpha.1",
-  "description": "lambda comments",
+  "description": "serverless commenting system",
   "main": "handler.js",
   "scripts": {
     "lint": "eslint .",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haiiku/lambda-comments.git"
+    "url": "git+https://github.com/haiiku/haiiku.git"
   },
   "author": "VEBERArnaud <https://github.com/VEBERArnaud>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/haiiku/lambda-comments/issues"
+    "url": "https://github.com/haiiku/haiiku/issues"
   },
-  "homepage": "https://github.com/haiiku/lambda-comments#readme",
+  "homepage": "https://github.com/haiiku/haiiku#readme",
   "devDependencies": {
     "aws-sdk": "^2.182.0",
     "chai": "^4.1.2",

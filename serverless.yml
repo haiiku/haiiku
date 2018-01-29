@@ -1,7 +1,7 @@
-service: lambda-comments
+service: haiiku
 
 custom:
-  table_name: lambda-comments-${self:provider.stage}
+  table_name: haiiku-${self:provider.stage}
   post_index_name: post-id-index-${self:provider.stage}
 
 provider:
