@@ -52,6 +52,6 @@
     "httpMethod": "POST",
     "apiId": "xxxxxxxxxx"
   },
-  "body": "{\"author\":\"VEBERArnaud\",\"text\":\"Foo Bar\"}",
+  "body": "{\"author\":\"haiiku\",\"text\":\"Foo Bar\"}",
   "isBase64Encoded": false
 }
